@@ -1,0 +1,42 @@
+body {
+    margin: 0;
+}
+
+.header {
+    background-image: url(bg.png);
+    background-size: cover;
+    height: 100vh;
+}
+
+.nav-item {
+    color: #fff;
+    text-decoration: none;
+    margin-right: 86px;
+
+    font-size: 38px;
+}
+
+.nav-item:hover {
+    color: red;
+}
+
+.nav-item:last-child {
+    margin-right: 0;
+}
+
+.nav {
+    display: flex;
+    justify-content: center;
+    padding-top: 34px;
+}
+
+.title {
+    color: #fff;
+    font-size: 80px;
+    width: 1000px;
+
+    text-align: center;
+    margin-right: auto;
+    margin-left: auto;
+    margin-top: 146px;
+}
