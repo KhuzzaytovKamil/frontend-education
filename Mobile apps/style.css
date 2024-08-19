@@ -1,0 +1,57 @@
+.container {
+    margin: auto 20px;
+}
+
+.container {
+    display: flex;
+    margin: 0;
+}
+
+.header-logo {
+    font-size: 74px;
+    font-weight: 800;
+    margin-top: 20px;
+    text-align: center;
+}
+
+.header-title {
+    font-size: 74px;
+    line-height: 85%;
+    font-weight: 300;
+    width: 878px;
+    
+    margin-top: 150px;
+}
+
+.header-bin a {
+    font-size: 39px;
+    font-weight: 800;
+    padding: 10px 15px;
+    background-color: #fff;
+    text-decoration: none;
+    color: #000;
+    border: 6px #000 solid;
+    border-radius: 20px;
+}
+
+.p1 {
+    height: 476px;
+    width: 436px;
+
+    position: absolute;
+    
+    z-index: 2;
+    right: 80px;
+    bottom: 180px;
+}
+
+.p2 {
+    height: 507px;
+    width: 268px;
+
+    position: absolute;
+
+    z-index: 1;
+    right: 20px;
+    bottom: 200px;
+}
