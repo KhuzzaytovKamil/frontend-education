@@ -1,5 +1,6 @@
 body {
     margin: 0;
+    font-family: Roboto;
 }
 
 .header {
@@ -39,4 +40,57 @@ body {
     margin-right: auto;
     margin-left: auto;
     margin-top: 146px;
+}
+
+.subtitle {
+    color: #fff;
+    width: 514px;
+    line-height: 44px;
+
+    text-align: center;
+    margin-right: auto;
+    margin-left: auto;
+    margin-top: 50px;
+
+    font-size: 56px;
+    font-weight: 900px
+
+}
+
+.input {
+    width: 447px;
+    height: 67px;
+    font-size: 24px;
+
+    outline: none;
+
+    border: 4px #8D8D8D solid;
+    border-radius: 20px;
+    padding-left: 15px;
+}
+
+.forma  {
+    text-align: center;
+    margin-top:48px;
+}
+
+.btn {
+    text-decoration: none;
+    font-size: 24px;
+    font-weight: 700;
+    background-color: #5B89CE;
+    padding: 15px 18px;
+    color: #fff;
+    border-radius: 25px;
+
+    border: 2px #476443 solid;
+    border-radius: 25px;
+}
+
+.btn:hover {
+    background-color: #0066ff;
+}
+.button {
+    text-align: center;
+    margin-top: 25px;
 }
