@@ -1,0 +1,46 @@
+.body {
+    font-family: "New Amsterdam", sans-serif;
+}
+
+.card {
+    background-color: #000;
+    width: 200px;
+    border-radius: 20px;
+    box-shadow: 10px 10px 40px #000;
+    padding: 20px;
+    margin: auto;
+    margin-top: 100px;
+}
+
+.card-title {
+    color: #fff;
+    font-size: 14px;
+    font-weight: 500;
+    margin-top: 20px;
+}
+
+.card-sub {
+    color: #fff;
+    font-size: 12px;
+    margin-top: 20px;
+}
+
+.btn-keeper {
+    font-size: 50px;
+    font-weight: 800;
+    color: #fff;
+    background-color: red;
+    padding: 30px 15px;
+    margin-top: 40px;
+    border-radius: 30px;
+    text-align: center;
+    transition: background-color 0.1s linear;
+}
+
+.btn-keeper:hover {
+    background-color: green;
+}
+
+.bike-image {
+    margin-left: 20px;
+}
