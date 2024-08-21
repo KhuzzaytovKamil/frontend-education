@@ -23,52 +23,47 @@ skirmishButton.addEventListener('click', (event) => {
     let yPosition = 50;
     let provinces = [];
 
-    function generateProvince(typeOfGeneration)
+    function generateProvince(position, provinceType)
     {
-        let isItPositionBlock = true;
-        if (isItPositionBlock)
+        switch (position)
         {
-            if (typeOfGeneration == "top") {
+            case "top":
                 yPosition -= 100;
-            }
-            else if (typeOfGeneration == "top-right") {
+                break;
+            case "top-right":
                 yPosition -= 48;
                 xPosition += 92;
-            }
-            else if (typeOfGeneration == "top-left") {
+                break;
+            case "top-left":
                 yPosition -= 48;
                 xPosition -= 92;
-            }
-            else if (typeOfGeneration == "bottom") {
+                break;
+            case "bottom":
                 yPosition += 100;
-            }
-            else if (typeOfGeneration == "bottom-right") {
+                break;
+            case "bottom-right":
                 yPosition += 48;
                 xPosition += 92;
-            }
-            else if (typeOfGeneration == "bottom-left") {
+                break;
+            default:
                 yPosition += 48;
                 xPosition -= 92;
-            }
+                break;
         }
 
-        let isItBlockOfGeneration = true;
-        if (isItBlockOfGeneration)
-        {
-            let province = document.createElement('province');
-            province.innerHTML = 
-            `
-                <img src="Free-province.png">
-            `;
-            province.style =
-            `
-            position: absolute;
-            left: ${xPosition}px;
-            top: ${yPosition}px;
-            `;
-            document.body.append(province);
-            province = null;
-        }
+        let province = document.createElement('province');
+        province.innerHTML = 
+        `
+            <img src="Free-province.png">
+        `;
+        province.style =
+        `
+        position: absolute;
+        left: ${xPosition}px;
+        top: ${yPosition}px;
+        `;
+        document.body.append(province);
+        province = null;
         
     }
 
