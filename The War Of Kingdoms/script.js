@@ -54,7 +54,7 @@ skirmishButton.addEventListener('click', (event) => {
         let province = document.createElement('province');
         province.innerHTML = 
         `
-            <img src="Free-province.png">
+            <img src="provinces/${provinceType}.png">
         `;
         province.style =
         `
@@ -69,11 +69,11 @@ skirmishButton.addEventListener('click', (event) => {
 
     for (let i = 0; i < 5; i++) 
     {
-        generateProvince("bottom-right");
+        generateProvince("bottom-right", "Free-province");
     }
 
     for (let i = 0; i < 3; i++) {
-        generateProvince("bottom");
+        generateProvince("bottom", "MediumSlateBlue-province");
     }
 
     
