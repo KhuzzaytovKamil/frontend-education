@@ -23,7 +23,7 @@ skirmishButton.addEventListener('click', (event) => {
     let yPosition = 50;
     let provinces = [];
 
-    function generateProvince(position, provinceType)
+    function generateProvince(position, provinceType, objectType)
     {
         switch (position)
         {
@@ -51,9 +51,9 @@ skirmishButton.addEventListener('click', (event) => {
                 break;
         }
 
-        let province = document.createElement('province');
         if (provinceType != "void")
         {
+            let province = document.createElement('province');
             province.innerHTML = 
             `
                 <img src="provinces/${provinceType}.png">
@@ -63,14 +63,32 @@ skirmishButton.addEventListener('click', (event) => {
             position: absolute;
             left: ${xPosition}px;
             top: ${yPosition}px;
+            z-index: 1;
             `;
             document.body.append(province);
             province = null;
+
+            if (objectType != "void")
+            {
+                let object = document.createElement('object');
+                object.innerHTML = 
+                `
+                    <img src="objects/${objectType}.png">
+                `;
+                object.style =
+                `
+                position: absolute;
+                left: ${xPosition}px;
+                top: ${yPosition}px;
+                z-index: 2;
+                `;
+                document.body.append(object);
+                object = null;
+            }
         }
-        
     }
 
-    for (let i = 0; i <= 11; i++)
+    for (let i = 1; i <= 11; i++)
         {
             switch (i)
             {
@@ -79,10 +97,14 @@ skirmishButton.addEventListener('click', (event) => {
                     {
                         generateProvince("bottom", "void");
                     }
-                    for (let j = 0; j < 10; j++) 
+                    generateProvince("bottom", "Free-province", "void");
+                    generateProvince("bottom", "Free-province", "tree (0)");
+                    for (let j = 0; j < 6; j++) 
                     {
-                        generateProvince("bottom", "Free-province");
+                        generateProvince("bottom", "Free-province", "void");
                     }
+                    generateProvince("bottom", "Free-province", "tree (0)");
+                    generateProvince("bottom", "Free-province", "void");
                     for (let j = 0; j < 3; j++) 
                     {
                         generateProvince("bottom", "void");
@@ -94,14 +116,18 @@ skirmishButton.addEventListener('click', (event) => {
                     {
                         generateProvince("top", "void");
                     }
-                    for (let j = 0; j < 7; j++) {
-                        generateProvince("top", "Free-province");
+                    for (let j = 0; j < 4; j++) {
+                        generateProvince("top", "Free-province", "void");
+                    }
+                    generateProvince("top", "Free-province", "tree (0)");
+                    for (let j = 0; j < 2; j++) {
+                        generateProvince("top", "Free-province", "void");
                     }
                     for (let j = 0; j < 2; j++) 
                     {
                         generateProvince("top", "void");
                     }
-                    generateProvince("top", "MediumSlateBlue-province");
+                    generateProvince("top", "MediumSlateBlue-province", "graveyard");
                     for (let j = 0; j < 2; j++) 
                     {
                         generateProvince("top", "void");
@@ -115,7 +141,7 @@ skirmishButton.addEventListener('click', (event) => {
                     }
                     for (let j = 0; j < 10; j++) 
                     {
-                        generateProvince("bottom", "Free-province");
+                        generateProvince("bottom", "Free-province", "void");
                     }
                     for (let j = 0; j < 3; j++) 
                     {
@@ -128,26 +154,35 @@ skirmishButton.addEventListener('click', (event) => {
                     {
                         generateProvince("top", "void");
                     }
-                    for (let j = 0; j < 13; j++) 
+                    for (let j = 0; j < 5; j++) 
                     {
-                        generateProvince("top", "Free-province");
+                        generateProvince("top", "Free-province", "void");
+                    }
+                    generateProvince("top", "Free-province", "tree (1)");
+                    for (let j = 0; j < 7; j++) 
+                    {
+                        generateProvince("top", "Free-province", "void");
                     }
                     generateProvince("top", "void");
                     generateProvince("top-right", "void");
                     break;
                 case 5:
                     generateProvince("bottom", "void");
-                    generateProvince("bottom", "Free-province");
+                    generateProvince("bottom", "Free-province", "void");
+                    generateProvince("bottom", "RoseRed-province", "farm");
+                    generateProvince("bottom", "RoseRed-province", "landCapital");
+                    generateProvince("bottom", "RoseRed-province", "tower (0)");
                     for (let j = 0; j < 3; j++) 
                     {
-                        generateProvince("bottom", "RoseRed-province");
+                        generateProvince("bottom", "Free-province", "void");
                     }
-                    for (let j = 0; j < 7; j++) 
+                    generateProvince("bottom", "Free-province", "unit (0)");
+                    for (let j = 0; j < 3; j++) 
                     {
-                        generateProvince("bottom", "Free-province");
+                        generateProvince("bottom", "Free-province", "void");
                     }
-                    generateProvince("bottom", "MediumSlateBlue-province");
-                    generateProvince("bottom", "Free-province");
+                    generateProvince("bottom", "MediumSlateBlue-province", "void");
+                    generateProvince("bottom", "Free-province", "void");
                     for (let j = 0; j < 2; j++) 
                     {
                         generateProvince("bottom", "void");
@@ -156,23 +191,23 @@ skirmishButton.addEventListener('click', (event) => {
                     break;
                 case 6:
                     generateProvince("top", "void");
-                    generateProvince("top", "Free-province");
-                    generateProvince("top", "MediumSlateBlue-province");
-                    generateProvince("top", "Free-province");
+                    generateProvince("top", "Free-province", "void");
+                    generateProvince("top", "MediumSlateBlue-province", "farm");
+                    generateProvince("top", "Free-province", "tree (1)");
                     generateProvince("top", "void");
                     for (let j = 0; j < 2; j++) 
                     {
-                        generateProvince("top", "Free-province");
+                        generateProvince("top", "Free-province", "void");
                     }
                     generateProvince("top", "void");
                     for (let j = 0; j < 2; j++) 
                     {
-                        generateProvince("top", "Free-province");
+                        generateProvince("top", "Free-province", "void");
                     }
                     generateProvince("top", "void");
-                    generateProvince("top", "Free-province");
-                    generateProvince("top", "RoseRed-province");
-                    generateProvince("top", "Free-province");
+                    generateProvince("top", "Free-province", "tree (1)");
+                    generateProvince("top", "RoseRed-province", "farm");
+                    generateProvince("top", "Free-province", "void");
                     for (let j = 0; j < 2; j++) 
                     {
                         generateProvince("top", "void");
@@ -184,24 +219,34 @@ skirmishButton.addEventListener('click', (event) => {
                     {
                         generateProvince("bottom", "void");
                     }
-                    generateProvince("bottom", "Free-province");
-                    generateProvince("bottom", "RoseRed-province");
-                    for (let j = 0; j < 7; j++) 
-                    {
-                        generateProvince("bottom", "Free-province");
-                    }
+                    generateProvince("bottom", "Free-province", "void");
+                    generateProvince("bottom", "RoseRed-province", "void");
+                    
                     for (let j = 0; j < 3; j++) 
                     {
-                        generateProvince("bottom", "MediumSlateBlue-province");
+                        generateProvince("bottom", "Free-province", "void");
                     }
-                    generateProvince("bottom", "Free-province");
+                    generateProvince("bottom", "Free-province", "unit (0)");
+                    for (let j = 0; j < 3; j++) 
+                    {
+                        generateProvince("bottom", "Free-province", "void");
+                    }
+                    generateProvince("bottom", "MediumSlateBlue-province", "tower (0)");
+                    generateProvince("bottom", "MediumSlateBlue-province", "landCapital");
+                    generateProvince("bottom", "MediumSlateBlue-province", "farm");
+                    generateProvince("bottom", "Free-province", "void");
                     generateProvince("bottom", "void");
                     generateProvince("bottom-right", "void");
                     break;
                 case 8:    
-                    for (let j = 0; j < 13; j++) 
+                for (let j = 0; j < 5; j++) 
                     {
-                        generateProvince("top", "Free-province");
+                        generateProvince("top", "Free-province", "void");
+                    }
+                    generateProvince("top", "Free-province", "tree (1)");
+                    for (let j = 0; j < 7; j++) 
+                    {
+                        generateProvince("top", "Free-province", "void");
                     }
                     for (let j = 0; j < 3; j++) 
                     {
@@ -216,7 +261,7 @@ skirmishButton.addEventListener('click', (event) => {
                     }
                     for (let j = 0; j < 10; j++) 
                     {
-                        generateProvince("bottom", "Free-province");
+                        generateProvince("bottom", "Free-province", "void");
                     }
                     for (let j = 0; j < 3; j++) 
                     {
@@ -226,14 +271,19 @@ skirmishButton.addEventListener('click', (event) => {
                     break;
                 case 10:    
                     generateProvince("top", "void");
-                    generateProvince("top", "RoseRed-province");
+                    generateProvince("top", "RoseRed-province", "graveyard");
                     for (let j = 0; j < 2; j++) 
                     {
                         generateProvince("top", "void");
                     }
-                    for (let j = 0; j < 7; j++) 
+                    for (let j = 0; j < 2; j++) 
                     {
-                        generateProvince("top", "Free-province");
+                        generateProvince("top", "Free-province", "void");
+                    }
+                    generateProvince("top", "Free-province", "tree (0)");
+                    for (let j = 0; j < 4; j++) 
+                    {
+                        generateProvince("top", "Free-province", "void");
                     }
                     for (let j = 0; j < 5; j++) 
                     {
@@ -246,10 +296,14 @@ skirmishButton.addEventListener('click', (event) => {
                     {
                         generateProvince("bottom", "void");
                     }
-                    for (let j = 0; j < 10; j++) 
+                    generateProvince("bottom", "Free-province", "void");
+                    generateProvince("bottom", "Free-province", "tree (0)");
+                    for (let j = 0; j < 6; j++) 
                     {
-                        generateProvince("bottom", "Free-province");
+                        generateProvince("bottom", "Free-province", "void");
                     }
+                    generateProvince("bottom", "Free-province", "tree (0)");
+                    generateProvince("bottom", "Free-province", "void");
                     break;
             }
         }
