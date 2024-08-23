@@ -71,11 +71,12 @@ function generateProvince(position, provinceType, objectType)
             object.style =
             `
             position: absolute;
-            left: ${xPosition}px;
-            top: ${yPosition}px;
+            left: 0;
+            top: 0;
             z-index: 2;
             `;
             document.body.append(object);
+            province.appendChild(object);
         }
         provinces.push(new provinceObject(xPosition, yPosition, province, provinceType, objectType));
     }
