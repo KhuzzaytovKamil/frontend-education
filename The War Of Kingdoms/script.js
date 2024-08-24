@@ -418,22 +418,27 @@ function generateStartSpace()
     let container = document.createElement('container');
     container.innerHTML = 
     `
-    <div class="skirmishButton">
-        skirmish
+    <div class="twoPlayersButton">
+        two players match
     </div>
-    <div class="editorButton">
-        editor
-    </div>
-    <div class="loadButton">
-        load
+    <div class="onlineButton">
+        online match
     </div>
     `;
     container.classList.add('container');
     document.body.append(container);
     
-    let skirmishButton = document.querySelector('.skirmishButton');
+    let onlineButton = document.querySelector('.onlineButton');
+    let twoPlayersButton = document.querySelector('.twoPlayersButton');
 
-    skirmishButton.addEventListener('click', (event) => 
+    onlineButton.addEventListener('click', (event) => 
+    {
+        container.remove();
+    
+        generateGameSpace();
+    });
+
+    twoPlayersButton.addEventListener('click', (event) => 
     {
         container.remove();
     

@@ -10,7 +10,7 @@ body, html {
     margin-top: 100px;
 }
 
-.skirmishButton
+.onlineButton
 {
     background-color: #ABADC4;
     max-width: 250px;
@@ -22,12 +22,12 @@ body, html {
     transition: background-color 0.1s linear;
 }
 
-.skirmishButton:hover
+.onlineButton:hover
 {
     background-color: #6573CB;
 }
 
-.editorButton
+.twoPlayersButton
 {
     background-color: #CBC8A7;
     max-width: 250px;
@@ -39,24 +39,7 @@ body, html {
     transition: background-color 0.1s linear;
 }
 
-.editorButton:hover
+.twoPlayersButton:hover
 {
     background-color: #ABA35A;
-}
-
-.loadButton
-{
-    background-color: #A0B8A2;
-    max-width: 250px;
-    padding: 30px 15px;
-    margin: auto;
-    margin-top: 30px;
-    border-radius: 35px;
-    text-align: center;
-    transition: background-color 0.1s linear;
-}
-
-.loadButton:hover
-{
-    background-color: #5BA66E;
 }
