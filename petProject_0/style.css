@@ -1,0 +1,28 @@
+body, html {
+    background-color: #2C6092;
+}
+
+.container {
+    font-size: 50px;
+    font-weight: 800;
+    color: #000;
+    margin: auto auto;
+    margin-top: 100px;
+}
+
+.playButton
+{
+    background-color: #ABADC4;
+    max-width: 250px;
+    padding: 30px 15px;
+    margin: auto;
+    margin-top: 30px;
+    border-radius: 35px;
+    text-align: center;
+    transition: background-color 0.1s linear;
+}
+
+.playButton:hover
+{
+    background-color: #6573CB;
+}
