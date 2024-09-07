@@ -10,19 +10,34 @@ body, html {
     margin-top: 100px;
 }
 
-.playButton
+.moveUp
 {
-    background-color: #ABADC4;
-    max-width: 250px;
-    padding: 30px 15px;
-    margin: auto;
-    margin-top: 30px;
-    border-radius: 35px;
-    text-align: center;
-    transition: background-color 0.1s linear;
+    position: absolute;
+    left: 200px;
+    top: 635px;
+    z-index: 10;
 }
 
-.playButton:hover
+.moveDown
 {
-    background-color: #6573CB;
+    position: absolute;
+    left: 200px;
+    top: 890px;
+    z-index: 10;
+}
+
+.moveLeft
+{
+    position: absolute;
+    left: 75px;
+    top: 750px;
+    z-index: 10;
+}
+
+.moveRight
+{
+    position: absolute;
+    left: 350px;
+    top: 750px;
+    z-index: 10;
 }

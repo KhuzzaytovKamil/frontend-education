@@ -1,6 +1,8 @@
 
-let xPosition = 100;
-let yPosition = 27400;
+let xPosition = -320;
+let yPosition = 7000;
+let horizontalIndent = 64;
+let verticalIndent = 64;
 let dataOfBlockChances = [];
 let namesOfBlockSprite = ["grass", "dirt", "stone", "coal", "iron", "gold", "diamond", "emerald"];
 let arrayOfBlockStrength = [0.45, 0.45, 1.5, 2.25, 2.25, 2.25, 2.25, 2.25]
@@ -38,7 +40,7 @@ function generateBlock(n0, n1, n2, n3, n4, n5, n6, n7)
     // let blockStrength = localFrequencyOfHeight.blockStrength[numberOfTypeOfThisBlock];
     // let restBlockStrength = blockStrength;
     
-    xPosition += 256;
+    xPosition += horizontalIndent;
     block.style =
     `
     position: absolute;
@@ -51,7 +53,7 @@ function generateBlock(n0, n1, n2, n3, n4, n5, n6, n7)
 
 function generateGameSpace()
 {
-    console.log("game space is being creating");
+    console.log("game space creating is started");
 
     dataOfBlockChances.push(new FrequencyOfHeight(0, 21, [-1, -1, 85, 85, 85, 91, 97, 100]));
     dataOfBlockChances.push(new FrequencyOfHeight(21, 36, [-1, -1, 85, 85, 87, 95, 97, 100]));
@@ -123,16 +125,51 @@ function generateGameSpace()
                 }
                 else
                 {
-                    xPosition += 256;
+                    xPosition += horizontalIndent;
                 }
             }
         }
-        yPosition -= 256;
+        yPosition -= verticalIndent;
         xPosition = 100;
     }
     
-    console.log("game space generation has been created");
+    console.log("game space has been created");
     console.log("");
 }
 
-generateGameSpace();
+function generateUI()
+{
+    console.log("UI creating is started");
+
+    let UI = document.createElement('UI');
+    UI.innerHTML = 
+    `
+    <div class="moveButtons">
+        <div class="moveUp">
+            <img src="UI/moveButtons/moveUp.png">
+        </div>
+        <div class="moveDown">
+            <img src="UI/moveButtons/moveDown.png">
+        </div>
+        <div class="moveLeft">
+            <img src="UI/moveButtons/moveLeft.png">
+        </div>
+        <div class="moveRight">
+            <img src="UI/moveButtons/moveRight.png">
+        </div>
+    </div>
+    `;
+    UI.classList.add('UI');
+    document.body.append(UI);
+    
+    let moveUp = document.querySelector('.moveUp');
+    let moveDown = document.querySelector('.moveDown');
+    let moveLeft = document.querySelector('.moveLeft');
+    let moveRight = document.querySelector('.moveRight');
+
+    console.log("UI has been created");
+    generateGameSpace();
+    console.log("");
+}
+
+generateUI();
