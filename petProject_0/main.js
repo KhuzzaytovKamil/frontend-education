@@ -1,5 +1,5 @@
 
-let xPosition = -320;
+let xPosition = 0;
 let yPosition = 7000;
 let horizontalIndent = 64;
 let verticalIndent = 64;
@@ -66,9 +66,9 @@ function generateGameSpace()
     
     for (let i = 0; i <= 101; i++)
     {
-        for (let j = 0; j <= 61; j++)
+        for (let j = 0; j <= 21; j++)
         {
-            if (0 <= i && 21 > i)
+            if (1 <= i && 21 > i)
             {
                 generateBlock(-1, -1, 85, 85, 85, 91, 97, 1000);
             }
@@ -106,7 +106,7 @@ function generateGameSpace()
             }
             else if (101 <= i && 102 > i)
             {
-                if (j == 31)
+                if (j == 11)
                 {
                     let noob = document.createElement('noob');
     
