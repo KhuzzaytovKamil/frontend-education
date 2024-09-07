@@ -1,13 +1,11 @@
-body, html {
+body, html 
+{
     background-color: #2C6092;
 }
 
-.container {
-    font-size: 50px;
-    font-weight: 800;
-    color: #000;
-    margin: auto auto;
-    margin-top: 100px;
+.UI 
+{
+    
 }
 
 .moveUp

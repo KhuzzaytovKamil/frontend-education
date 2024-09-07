@@ -1,18 +1,19 @@
+let noobVerticalLayer = 1;
+let noobHorizontalLayer = 11;
 
-let xPosition = 0;
-let yPosition = 7000;
+let constVerticalIndent = 500;
 let horizontalIndent = 64;
+let horizontalStartIndentForNoob = 64 * noobHorizontalLayer;
 let verticalIndent = 64;
-let dataOfBlockChances = [];
+
 let namesOfBlockSprite = ["grass", "dirt", "stone", "coal", "iron", "gold", "diamond", "emerald"];
-let arrayOfBlockStrength = [0.45, 0.45, 1.5, 2.25, 2.25, 2.25, 2.25, 2.25];
+
 let noob;
-let noobX;
-let noobY;
+let noobX = 0;
+let noobY = 0;
+
 let blocks = [];
 let thisBlock;
-let noobVerticalLayer;
-let noobHorizontalLayer;
 
 function FrequencyOfHeight(minHeight, maxHeight, frequencyOfBropoutOfType)
 {
@@ -42,17 +43,6 @@ function generateBlock(n0, n1, n2, n3, n4, n5, n6, n7)
     `
         <img src="Blocks/${namesOfBlockSprite[numberOfTypeOfThisBlock]}.png">
     `;
-    // let blockStrength = localFrequencyOfHeight.blockStrength[numberOfTypeOfThisBlock];
-    // let restBlockStrength = blockStrength;
-    
-    xPosition += horizontalIndent;
-    block.style =
-    `
-    position: absolute;
-    left: ${xPosition}px;
-    top: ${yPosition}px;
-    z-index: 1;
-    `;
     document.body.append(block);
     return block;
 }
@@ -60,24 +50,39 @@ function generateBlock(n0, n1, n2, n3, n4, n5, n6, n7)
 function generateGameSpace()
 {
     console.log("game space creating is started");
-
-    dataOfBlockChances.push(new FrequencyOfHeight(0, 21, [-1, -1, 85, 85, 85, 91, 97, 100]));
-    dataOfBlockChances.push(new FrequencyOfHeight(21, 36, [-1, -1, 85, 85, 87, 95, 97, 100]));
-    dataOfBlockChances.push(new FrequencyOfHeight(36, 51, [-1, -1, 85, 85, 90, 97, 100, 100]));
-    dataOfBlockChances.push(new FrequencyOfHeight(51, 65, [-1, -1, 89, 91, 96, 99, 100, 100]));
-    dataOfBlockChances.push(new FrequencyOfHeight(66, 81, [-1, -1, 88, 93, 98, 100, 100, 100]));
-    dataOfBlockChances.push(new FrequencyOfHeight(81, 96, [-1, -1, 90, 94, 100, 100, 100, 100]));
-    dataOfBlockChances.push(new FrequencyOfHeight(96, 98, [-1, 75, 97, 99, 100, 100, 100, 100]));
-    dataOfBlockChances.push(new FrequencyOfHeight(98, 100, [-1, 100, 100, 100, 100, 100, 100, 100]));
     
     for (let i = 0; i <= 101; i++)
     {
         lineOfBlocks = [];
+
+        if (101 <= i && 102 > i)
+        {
+            noobVerticalLayer = blocks.length;
+
+            noob = document.createElement('noob');
+    
+            noob.innerHTML = 
+            `
+                <img src="noob.png">
+            `;
+
+            noob.style =
+            `
+            position: absolute;
+            left: ${horizontalStartIndentForNoob}px;
+            top: ${constVerticalIndent}px;
+            z-index: 2;
+            `;
+            UpdateNoobPosition();
+            document.body.append(noob);
+            break;
+        }
+
         for (let j = 0; j <= 21; j++)
         {
             if (1 <= i && 21 > i)
             {
-                lineOfBlocks = generateBlock(-1, -1, 85, 85, 85, 91, 97, 1000);
+                lineOfBlocks.push(generateBlock(-1, -1, 85, 85, 85, 91, 97, 1000));
             }
             else if (21 <= i && 36 > i)
             {
@@ -111,39 +116,8 @@ function generateGameSpace()
             {
                 lineOfBlocks.push(generateBlock(1000, 0, 0, 0, 0, 0, 0, 0));
             }
-            else if (101 <= i && 102 > i)
-            {
-                if (j == 11)
-                {
-                    noobHorizontalLayer = j;
-                    noobVerticalLayer = blocks.length;
-
-                    noob = document.createElement('noob');
-    
-                    noob.innerHTML = 
-                    `
-                        <img src="noob.png">
-                    `;
-
-                    noobX = xPosition;
-                    noobY = yPosition;
-
-                    UpdateNoobPosition();
-                    document.body.append(noob);
-
-                }
-                else
-                {
-                    xPosition += horizontalIndent;
-                }
-            }
         }
-        if (!(101 <= i && 102 > i))
-        {
-            blocks.push(lineOfBlocks);
-        }
-        yPosition -= verticalIndent;
-        xPosition = 100;
+        blocks.push(lineOfBlocks);
     }
 
     
@@ -218,16 +192,24 @@ generateUI();
 
 function UpdateNoobPosition()
 {
-    noob.style =
-    `
-    position: absolute;
-    left: ${noobX}px;
-    top: ${noobY}px;
-    z-index: 2;
-    `;
+    for (let i = 1; i <= 100; i++)
+    {
+        for (let j = 0; j <= 21; j++)
+        {
+            blocks[i][j].style =
+            `
+            position: absolute;
+            left: ${j * horizontalIndent - noobX}px;
+            top: ${(101 - i) * verticalIndent + constVerticalIndent - noobY}px;
+            z-index: 2;
+            `;
+        }
+    }
+
+    console.log(blocks[noobVerticalLayer]);
     if (blocks[noobVerticalLayer] ?? false)
     {
-        thisBlock = blocks[noobVerticalLayer][noobHorizontalLayer - 1];
+        thisBlock = blocks[noobVerticalLayer][noobHorizontalLayer];
         thisBlock.innerHTML = 
         `
             <img src="transparentSprite.png">
