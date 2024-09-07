@@ -5,7 +5,10 @@ let horizontalIndent = 64;
 let verticalIndent = 64;
 let dataOfBlockChances = [];
 let namesOfBlockSprite = ["grass", "dirt", "stone", "coal", "iron", "gold", "diamond", "emerald"];
-let arrayOfBlockStrength = [0.45, 0.45, 1.5, 2.25, 2.25, 2.25, 2.25, 2.25]
+let arrayOfBlockStrength = [0.45, 0.45, 1.5, 2.25, 2.25, 2.25, 2.25, 2.25];
+let noob;
+let noobX;
+let noobY;
 
 function FrequencyOfHeight(minHeight, maxHeight, frequencyOfBropoutOfType)
 {
@@ -21,13 +24,11 @@ function generateBlock(n0, n1, n2, n3, n4, n5, n6, n7)
     
     let numberOfTypeOfThisBlock = 2;
     let selectionIntervalOfBlockType = Math.random() * 101;
-    console.log(selectionIntervalOfBlockType);
     for (let i = 0; i < 8; i++)
     {
         if (selectionIntervalOfBlockType <= frequencyOfBropoutOfType[i])
         {
             numberOfTypeOfThisBlock = i;
-            console.log(numberOfTypeOfThisBlock);
             break;
         }
     }
@@ -108,20 +109,19 @@ function generateGameSpace()
             {
                 if (j == 11)
                 {
-                    let noob = document.createElement('noob');
+                    noob = document.createElement('noob');
     
                     noob.innerHTML = 
                     `
                         <img src="noob.png">
                     `;
-                    noob.style =
-                    `
-                    position: absolute;
-                    left: ${xPosition}px;
-                    top: ${yPosition}px;
-                    z-index: 1;
-                    `;
+
+                    noobX = xPosition;
+                    noobY = yPosition;
+
+                    UpdateNoobPosition();
                     document.body.append(noob);
+
                 }
                 else
                 {
@@ -167,9 +167,44 @@ function generateUI()
     let moveLeft = document.querySelector('.moveLeft');
     let moveRight = document.querySelector('.moveRight');
 
+    moveUp.addEventListener('click', (event) => 
+    {
+        noobY -= 64;
+        UpdateNoobPosition();
+    });
+
+    moveDown.addEventListener('click', (event) => 
+    {
+        noobY += 64;
+        UpdateNoobPosition();
+    });
+
+    moveRight.addEventListener('click', (event) => 
+    {
+        noobX += 64;
+        UpdateNoobPosition();
+    });
+
+    moveLeft.addEventListener('click', (event) => 
+    {
+        noobX -= 64;
+        UpdateNoobPosition();
+    });
+
     console.log("UI has been created");
     generateGameSpace();
     console.log("");
 }
 
 generateUI();
+
+function UpdateNoobPosition()
+{
+    noob.style =
+    `
+    position: absolute;
+    left: ${noobX}px;
+    top: ${noobY}px;
+    z-index: 2;
+    `;
+}
