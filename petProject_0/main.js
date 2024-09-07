@@ -212,7 +212,7 @@ function UpdateNoobPosition()
         thisBlock = blocks[noobVerticalLayer][noobHorizontalLayer];
         thisBlock.innerHTML = 
         `
-            <img src="transparentSprite.png">
+            <img src="Ladder.png">
         `;
     }
 }
