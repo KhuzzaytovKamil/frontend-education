@@ -9,6 +9,10 @@ let arrayOfBlockStrength = [0.45, 0.45, 1.5, 2.25, 2.25, 2.25, 2.25, 2.25];
 let noob;
 let noobX;
 let noobY;
+let blocks = [];
+let thisBlock;
+let noobVerticalLayer;
+let noobHorizontalLayer;
 
 function FrequencyOfHeight(minHeight, maxHeight, frequencyOfBropoutOfType)
 {
@@ -50,6 +54,7 @@ function generateBlock(n0, n1, n2, n3, n4, n5, n6, n7)
     z-index: 1;
     `;
     document.body.append(block);
+    return block;
 }
 
 function generateGameSpace()
@@ -67,48 +72,52 @@ function generateGameSpace()
     
     for (let i = 0; i <= 101; i++)
     {
+        lineOfBlocks = [];
         for (let j = 0; j <= 21; j++)
         {
             if (1 <= i && 21 > i)
             {
-                generateBlock(-1, -1, 85, 85, 85, 91, 97, 1000);
+                lineOfBlocks = generateBlock(-1, -1, 85, 85, 85, 91, 97, 1000);
             }
             else if (21 <= i && 36 > i)
             {
-                generateBlock(-1, -1, 85, 85, 87, 95, 97, 1000);
+                lineOfBlocks.push(generateBlock(-1, -1, 85, 85, 87, 95, 97, 1000));
             }
             else if (36 <= i && 51 > i)
             {
-                generateBlock(-1, -1, 85, 85, 90, 97, 1000, 0);
+                lineOfBlocks.push(generateBlock(-1, -1, 85, 85, 90, 97, 1000, 0));
             }
             else if (51 <= i && 66 > i)
             {
-                generateBlock(-1, -1, 89, 91, 96, 99, 1000, 0);
+                lineOfBlocks.push(generateBlock(-1, -1, 89, 91, 96, 99, 1000, 0));
             }
             else if (66 <= i && 81 > i)
             {
-                generateBlock(-1, -1, 88, 93, 98, 1000, 0, 0);
+                lineOfBlocks.push(generateBlock(-1, -1, 88, 93, 98, 1000, 0, 0));
             }
             else if (81 <= i && 96 > i)
             {
-                generateBlock(-1, -1, 90, 94, 1000, 0, 0, 0);
+                lineOfBlocks.push(generateBlock(-1, -1, 90, 94, 1000, 0, 0, 0));
             }
             else if (96 <= i && 98 > i)
             {
-                generateBlock(-1, 75, 97, 99, 1000, 0, 0, 0);
+                lineOfBlocks.push(generateBlock(-1, 75, 97, 99, 1000, 0, 0, 0));
             }
             else if (98 <= i && 100 > i)
             {
-                generateBlock(-1, 1000, 0, 0, 0, 0, 0, 0);
+                lineOfBlocks.push(generateBlock(-1, 1000, 0, 0, 0, 0, 0, 0));
             }
             else if (100 <= i && 101 > i)
             {
-                generateBlock(1000, 0, 0, 0, 0, 0, 0, 0);
+                lineOfBlocks.push(generateBlock(1000, 0, 0, 0, 0, 0, 0, 0));
             }
             else if (101 <= i && 102 > i)
             {
                 if (j == 11)
                 {
+                    noobHorizontalLayer = j;
+                    noobVerticalLayer = blocks.length;
+
                     noob = document.createElement('noob');
     
                     noob.innerHTML = 
@@ -129,9 +138,14 @@ function generateGameSpace()
                 }
             }
         }
+        if (!(101 <= i && 102 > i))
+        {
+            blocks.push(lineOfBlocks);
+        }
         yPosition -= verticalIndent;
         xPosition = 100;
     }
+
     
     console.log("game space has been created");
     console.log("");
@@ -170,24 +184,28 @@ function generateUI()
     moveUp.addEventListener('click', (event) => 
     {
         noobY -= 64;
+        ++noobVerticalLayer;
         UpdateNoobPosition();
     });
 
     moveDown.addEventListener('click', (event) => 
     {
         noobY += 64;
+        --noobVerticalLayer;
         UpdateNoobPosition();
     });
 
     moveRight.addEventListener('click', (event) => 
     {
         noobX += 64;
+        ++noobHorizontalLayer;
         UpdateNoobPosition();
     });
 
     moveLeft.addEventListener('click', (event) => 
     {
         noobX -= 64;
+        --noobHorizontalLayer;
         UpdateNoobPosition();
     });
 
@@ -207,4 +225,12 @@ function UpdateNoobPosition()
     top: ${noobY}px;
     z-index: 2;
     `;
+    if (blocks[noobVerticalLayer] ?? false)
+    {
+        thisBlock = blocks[noobVerticalLayer][noobHorizontalLayer - 1];
+        thisBlock.innerHTML = 
+        `
+            <img src="transparentSprite.png">
+        `;
+    }
 }
