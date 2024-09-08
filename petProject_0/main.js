@@ -19,59 +19,10 @@ let blocks = [];
 let thisBlock;
 let horizontalScreenType = "more, than 1399";
 
-const Update = setInterval(() =>
-{
-    if (window.innerWidth >= 1400 && horizontalScreenType == "755 - 1399")
-    {
-        constVerticalIndent *= 2;
-        horizontalIndent *= 2;
-        horizontalStartIndentForNoob *= 2;
-        verticalIndent *= 2;
-        horizontalScreenType = "more, than 1399";
-    }
-    else if (window.innerWidth >= 755 && window.innerWidth < 1400 && horizontalScreenType == "more, than 1399")
-    {
-        constVerticalIndent /= 2;
-        horizontalIndent /= 2;
-        horizontalStartIndentForNoob /= 2;
-        verticalIndent /= 2;
-        horizontalScreenType = "755 - 1399";
-    }
-    else if (window.innerWidth >= 755 && window.innerWidth < 1400 && horizontalScreenType == "less, than 755")
-    {
-        constVerticalIndent *= 2;
-        horizontalIndent *= 2;
-        horizontalStartIndentForNoob *= 2;
-        verticalIndent *= 2;
-        horizontalScreenType = "755 - 1399";
-    }
-    else if (window.innerWidth < 755 && horizontalScreenType == "755 - 1399")
-    {
-        constVerticalIndent /= 2;
-        horizontalIndent /= 2;
-        horizontalStartIndentForNoob /= 2;
-        verticalIndent /= 2;
-        horizontalScreenType = "less, than 755";
-    }
-    else if (window.innerWidth >= 1400 && horizontalScreenType == "less, than 755")
-    {
-        constVerticalIndent *= 4;
-        horizontalIndent *= 4;
-        horizontalStartIndentForNoob *= 4;
-        verticalIndent *= 4;
-        horizontalScreenType = "more, than 1399";
-    }
-    else if (window.innerWidth < 755 && horizontalScreenType == "more, than 1399")
-    {
-        constVerticalIndent /= 4;
-        horizontalIndent /= 4;
-        horizontalStartIndentForNoob /= 4;
-        verticalIndent /= 4;
-        horizontalScreenType = "less, than 755";
-    }
-    UpdateNoobPosition();
-}, 20);
-
+let moveUp;
+let moveDown;
+let moveLeft;
+let moveRight;
 
 function FrequencyOfHeight(minHeight, maxHeight, frequencyOfBropoutOfType)
 {
@@ -185,6 +136,7 @@ function generateGameSpace()
 
 function generateUI()
 {
+
     console.log("UI creating is started");
 
     let UI = document.createElement('UI');
@@ -200,10 +152,10 @@ function generateUI()
     UI.classList.add('UI');
     document.body.append(UI);
     
-    let moveUp = document.querySelector('.moveUp');
-    let moveDown = document.querySelector('.moveDown');
-    let moveLeft = document.querySelector('.moveLeft');
-    let moveRight = document.querySelector('.moveRight');
+    moveUp = document.querySelector('.moveUp');
+    moveDown = document.querySelector('.moveDown');
+    moveLeft = document.querySelector('.moveLeft');
+    moveRight = document.querySelector('.moveRight');
 
     moveUp.addEventListener('click', (event) => 
     {
@@ -250,8 +202,6 @@ function generateUI()
     generateGameSpace();
 }
 
-generateUI();
-
 function UpdateNoobPosition()
 {
     noob.style =
@@ -284,3 +234,75 @@ function UpdateNoobPosition()
         `;
     }
 }
+
+generateUI();
+
+const Update = setInterval(() =>
+{
+    moveUp.style =
+    `
+    top: ${window.innerHeight - 200}px;
+    `;
+    moveDown.style =
+    `
+    top: ${window.innerHeight - 65}px;
+    `;
+    moveLeft.style =
+    `
+    top: ${window.innerHeight - 140}px;
+    `;
+    moveRight.style =
+    `
+    top: ${window.innerHeight - 140}px;
+    `;
+    
+    if (window.innerWidth >= 1400 && horizontalScreenType == "755 - 1399")
+    {
+        constVerticalIndent *= 2;
+        horizontalIndent *= 2;
+        horizontalStartIndentForNoob *= 2;
+        verticalIndent *= 2;
+        horizontalScreenType = "more, than 1399";
+    }
+    else if (window.innerWidth >= 755 && window.innerWidth < 1400 && horizontalScreenType == "more, than 1399")
+    {
+        constVerticalIndent /= 2;
+        horizontalIndent /= 2;
+        horizontalStartIndentForNoob /= 2;
+        verticalIndent /= 2;
+        horizontalScreenType = "755 - 1399";
+    }
+    else if (window.innerWidth >= 755 && window.innerWidth < 1400 && horizontalScreenType == "less, than 755")
+    {
+        constVerticalIndent *= 2;
+        horizontalIndent *= 2;
+        horizontalStartIndentForNoob *= 2;
+        verticalIndent *= 2;
+        horizontalScreenType = "755 - 1399";
+    }
+    else if (window.innerWidth < 755 && horizontalScreenType == "755 - 1399")
+    {
+        constVerticalIndent /= 2;
+        horizontalIndent /= 2;
+        horizontalStartIndentForNoob /= 2;
+        verticalIndent /= 2;
+        horizontalScreenType = "less, than 755";
+    }
+    else if (window.innerWidth >= 1400 && horizontalScreenType == "less, than 755")
+    {
+        constVerticalIndent *= 4;
+        horizontalIndent *= 4;
+        horizontalStartIndentForNoob *= 4;
+        verticalIndent *= 4;
+        horizontalScreenType = "more, than 1399";
+    }
+    else if (window.innerWidth < 755 && horizontalScreenType == "more, than 1399")
+    {
+        constVerticalIndent /= 4;
+        horizontalIndent /= 4;
+        horizontalStartIndentForNoob /= 4;
+        verticalIndent /= 4;
+        horizontalScreenType = "less, than 755";
+    }
+    UpdateNoobPosition();
+}, 20);
