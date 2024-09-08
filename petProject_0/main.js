@@ -1,7 +1,10 @@
+let horizontalSize = 21;
+let verticalSize = 101;
+
 let noobVerticalLayer = 1;
 let noobHorizontalLayer = 11;
 
-let constVerticalIndent = 500;
+let constVerticalIndent = 150;
 let horizontalIndent = 64;
 let horizontalStartIndentForNoob = 64 * noobHorizontalLayer;
 let verticalIndent = 64;
@@ -14,6 +17,61 @@ let noobY = 0;
 
 let blocks = [];
 let thisBlock;
+let horizontalScreenType = "more, than 1399";
+
+const Update = setInterval(() =>
+{
+    if (window.innerWidth >= 1400 && horizontalScreenType == "755 - 1399")
+    {
+        constVerticalIndent *= 2;
+        horizontalIndent *= 2;
+        horizontalStartIndentForNoob *= 2;
+        verticalIndent *= 2;
+        horizontalScreenType = "more, than 1399";
+    }
+    else if (window.innerWidth >= 755 && window.innerWidth < 1400 && horizontalScreenType == "more, than 1399")
+    {
+        constVerticalIndent /= 2;
+        horizontalIndent /= 2;
+        horizontalStartIndentForNoob /= 2;
+        verticalIndent /= 2;
+        horizontalScreenType = "755 - 1399";
+    }
+    else if (window.innerWidth >= 755 && window.innerWidth < 1400 && horizontalScreenType == "less, than 755")
+    {
+        constVerticalIndent *= 2;
+        horizontalIndent *= 2;
+        horizontalStartIndentForNoob *= 2;
+        verticalIndent *= 2;
+        horizontalScreenType = "755 - 1399";
+    }
+    else if (window.innerWidth < 755 && horizontalScreenType == "755 - 1399")
+    {
+        constVerticalIndent /= 2;
+        horizontalIndent /= 2;
+        horizontalStartIndentForNoob /= 2;
+        verticalIndent /= 2;
+        horizontalScreenType = "less, than 755";
+    }
+    else if (window.innerWidth >= 1400 && horizontalScreenType == "less, than 755")
+    {
+        constVerticalIndent *= 4;
+        horizontalIndent *= 4;
+        horizontalStartIndentForNoob *= 4;
+        verticalIndent *= 4;
+        horizontalScreenType = "more, than 1399";
+    }
+    else if (window.innerWidth < 755 && horizontalScreenType == "more, than 1399")
+    {
+        constVerticalIndent /= 4;
+        horizontalIndent /= 4;
+        horizontalStartIndentForNoob /= 4;
+        verticalIndent /= 4;
+        horizontalScreenType = "less, than 755";
+    }
+    UpdateNoobPosition();
+}, 20);
+
 
 function FrequencyOfHeight(minHeight, maxHeight, frequencyOfBropoutOfType)
 {
@@ -41,7 +99,7 @@ function generateBlock(n0, n1, n2, n3, n4, n5, n6, n7)
     
     block.innerHTML = 
     `
-        <img src="Blocks/${namesOfBlockSprite[numberOfTypeOfThisBlock]}.png">
+        <img src="Blocks/${namesOfBlockSprite[numberOfTypeOfThisBlock]}.png" class="layoutСontroller">
     `;
     document.body.append(block);
     return block;
@@ -51,7 +109,7 @@ function generateGameSpace()
 {
     console.log("game space creating is started");
     
-    for (let i = 0; i <= 101; i++)
+    for (let i = 0; i <= verticalSize; i++)
     {
         lineOfBlocks = [];
 
@@ -63,7 +121,7 @@ function generateGameSpace()
     
             noob.innerHTML = 
             `
-                <img src="noob.png">
+                <img src="noob.png" class="layoutСontroller">
             `;
 
             noob.style =
@@ -78,7 +136,7 @@ function generateGameSpace()
             break;
         }
 
-        for (let j = 0; j <= 21; j++)
+        for (let j = 0; j <= horizontalSize; j++)
         {
             if (1 <= i && 21 > i)
             {
@@ -133,18 +191,10 @@ function generateUI()
     UI.innerHTML = 
     `
     <div class="moveButtons">
-        <div class="moveUp">
-            <img src="UI/moveButtons/moveUp.png">
-        </div>
-        <div class="moveDown">
-            <img src="UI/moveButtons/moveDown.png">
-        </div>
-        <div class="moveLeft">
-            <img src="UI/moveButtons/moveLeft.png">
-        </div>
-        <div class="moveRight">
-            <img src="UI/moveButtons/moveRight.png">
-        </div>
+        <img src="UI/moveButtons/moveUp.png" class="moveUp">
+        <img src="UI/moveButtons/moveDown.png" class="moveDown">
+        <img src="UI/moveButtons/moveLeft.png" class="moveLeft">
+        <img src="UI/moveButtons/moveRight.png" class="moveRight">
     </div>
     `;
     UI.classList.add('UI');
@@ -157,41 +207,60 @@ function generateUI()
 
     moveUp.addEventListener('click', (event) => 
     {
-        noobY -= 64;
-        ++noobVerticalLayer;
-        UpdateNoobPosition();
+        if (noobY > 0)
+        {
+            --noobY;
+            ++noobVerticalLayer;
+            UpdateNoobPosition();
+        }
     });
 
     moveDown.addEventListener('click', (event) => 
     {
-        noobY += 64;
-        --noobVerticalLayer;
-        UpdateNoobPosition();
+        if (noobY < verticalSize - 1)
+        {
+            ++noobY;
+            --noobVerticalLayer;
+            UpdateNoobPosition();
+        }
     });
 
     moveRight.addEventListener('click', (event) => 
     {
-        noobX += 64;
-        ++noobHorizontalLayer;
-        UpdateNoobPosition();
+        if (noobX < (horizontalSize - 1) / 2)
+        {
+            ++noobX;
+            ++noobHorizontalLayer;
+            UpdateNoobPosition();
+        }
     });
 
     moveLeft.addEventListener('click', (event) => 
     {
-        noobX -= 64;
-        --noobHorizontalLayer;
-        UpdateNoobPosition();
+        if (noobX > (-horizontalSize) / 2)
+        {
+            --noobX;
+            --noobHorizontalLayer;
+            UpdateNoobPosition();
+        }
     });
 
     console.log("UI has been created");
-    generateGameSpace();
     console.log("");
+    generateGameSpace();
 }
 
 generateUI();
 
 function UpdateNoobPosition()
 {
+    noob.style =
+    `
+    position: absolute;
+    left: ${horizontalStartIndentForNoob}px;
+    top: ${constVerticalIndent}px;
+    z-index: 2;
+    `;
     for (let i = 1; i <= 100; i++)
     {
         for (let j = 0; j <= 21; j++)
@@ -199,20 +268,19 @@ function UpdateNoobPosition()
             blocks[i][j].style =
             `
             position: absolute;
-            left: ${j * horizontalIndent - noobX}px;
-            top: ${(101 - i) * verticalIndent + constVerticalIndent - noobY}px;
+            left: ${(j - noobX) * horizontalIndent}px;
+            top: ${(101 - i - noobY) * verticalIndent + constVerticalIndent}px;
             z-index: 2;
             `;
         }
     }
 
-    console.log(blocks[noobVerticalLayer]);
     if (blocks[noobVerticalLayer] ?? false)
     {
         thisBlock = blocks[noobVerticalLayer][noobHorizontalLayer];
         thisBlock.innerHTML = 
         `
-            <img src="Ladder.png">
+            <img src="Ladder.png" class="layoutСontroller">
         `;
     }
 }

@@ -3,24 +3,19 @@ body, html
     background-color: #2C6092;
 }
 
-.UI 
-{
-    
-}
-
 .moveUp
 {
     position: absolute;
-    left: 200px;
-    top: 635px;
+    left: 175px;
+    top: 550px;
     z-index: 10;
 }
 
 .moveDown
 {
     position: absolute;
-    left: 200px;
-    top: 890px;
+    left: 175px;
+    top: 775px;
     z-index: 10;
 }
 
@@ -28,14 +23,204 @@ body, html
 {
     position: absolute;
     left: 75px;
-    top: 750px;
+    top: 650px;
     z-index: 10;
 }
 
 .moveRight
 {
     position: absolute;
-    left: 350px;
-    top: 750px;
+    left: 300px;
+    top: 650px;
     z-index: 10;
+}
+
+@media (max-width: 1399px)
+{
+    .layoutСontroller
+    {
+        width: 50%;
+    }
+
+    .moveButtons
+    {
+        width: 50%;
+    }
+}
+
+@media (max-width: 754px)
+{
+    .layoutСontroller
+    {
+        width: 25%;
+    }
+
+    .moveButtons
+    {
+        width: 25%;
+    }
+}
+
+@media (max-height: 900px)
+{
+    .moveUp
+    {
+        position: absolute;
+        left: 175px;
+        top: 450px;
+        z-index: 10;
+    }
+    
+    .moveDown
+    {
+        position: absolute;
+        left: 175px;
+        top: 675px;
+        z-index: 10;
+    }
+    
+    .moveLeft
+    {
+        position: absolute;
+        left: 75px;
+        top: 550px;
+        z-index: 10;
+    }
+    
+    .moveRight
+    {
+        position: absolute;
+        left: 300px;
+        top: 550px;
+        z-index: 10;
+    }
+}
+
+@media (max-height: 800px)
+{
+    .moveUp
+    {
+        position: absolute;
+        left: 130px;
+        top: 410px;
+        width: 100px;
+        height: 80px;
+        z-index: 10;
+    }
+    
+    .moveDown
+    {
+        position: absolute;
+        left: 130px;
+        top: 590px;
+        width: 100px;
+        height: 80px;
+        z-index: 10;
+    }
+    
+    .moveLeft
+    {
+        position: absolute;
+        left: 50px;
+        top: 490px;
+        width: 80px;
+        height: 100px;
+        z-index: 10;
+    }
+    
+    .moveRight
+    {
+        position: absolute;
+        left: 230px;
+        top: 490px;
+        width: 80px;
+        height: 100px;
+        z-index: 10;
+    }
+}
+
+@media (max-height: 700px)
+{
+    .moveUp
+    {
+        position: absolute;
+        left: 90px;
+        top: 290px;
+        width: 75px;
+        height: 60px;
+        z-index: 10;
+    }
+    
+    .moveDown
+    {
+        position: absolute;
+        left: 90px;
+        top: 425px;
+        width: 75px;
+        height: 60px;
+        z-index: 10;
+    }
+    
+    .moveLeft
+    {
+        position: absolute;
+        left: 30px;
+        top: 350px;
+        width: 60px;
+        height: 75px;
+        z-index: 10;
+    }
+    
+    .moveRight
+    {
+        position: absolute;
+        left: 165px;
+        top: 350px;
+        width: 60px;
+        height: 75px;
+        z-index: 10;
+    }
+}
+
+@media (max-height: 500px)
+{
+    .moveUp
+    {
+        position: absolute;
+        left: 90px;
+        top: 90px;
+        width: 75px;
+        height: 60px;
+        z-index: 10;
+    }
+    
+    .moveDown
+    {
+        position: absolute;
+        left: 90px;
+        top: 225px;
+        width: 75px;
+        height: 60px;
+        z-index: 10;
+    }
+    
+    .moveLeft
+    {
+        position: absolute;
+        left: 30px;
+        top: 150px;
+        width: 60px;
+        height: 75px;
+        z-index: 10;
+    }
+    
+    .moveRight
+    {
+        position: absolute;
+        left: 165px;
+        top: 150px;
+        width: 60px;
+        height: 75px;
+        z-index: 10;
+    }
 }
