@@ -215,7 +215,7 @@ function generateUI()
             UpdateNoobPosition();
             if (arrayOfBlockTypes[noobVerticalLayer] ?? false)
             {
-                resources[arrayOfBlockTypes[noobVerticalLayer][noobHorizontalLayer]]++;
+                addResource();
             }
             UpdateTextsOfResources();
         }
@@ -230,7 +230,7 @@ function generateUI()
             UpdateNoobPosition();
             if (arrayOfBlockTypes[noobVerticalLayer] ?? false)
             {
-                resources[arrayOfBlockTypes[noobVerticalLayer][noobHorizontalLayer]]++;
+                addResource();
             }
             UpdateTextsOfResources();
         }
@@ -245,7 +245,7 @@ function generateUI()
             UpdateNoobPosition();
             if (arrayOfBlockTypes[noobVerticalLayer] ?? false)
             {
-                resources[arrayOfBlockTypes[noobVerticalLayer][noobHorizontalLayer]]++;
+                addResource();
             }
             UpdateTextsOfResources();
         }
@@ -260,7 +260,7 @@ function generateUI()
             UpdateNoobPosition();
             if (arrayOfBlockTypes[noobVerticalLayer] ?? false)
             {
-                resources[arrayOfBlockTypes[noobVerticalLayer][noobHorizontalLayer]]++;
+                addResource();
             }
             UpdateTextsOfResources();
         }
@@ -336,7 +336,6 @@ const Update = setInterval(() =>
     
     if (window.innerWidth >= 1400 && horizontalScreenType == "755 - 1399")
     {
-        constVerticalIndent *= 2;
         horizontalIndent *= 2;
         horizontalStartIndentForNoob *= 2;
         verticalIndent *= 2;
@@ -344,7 +343,6 @@ const Update = setInterval(() =>
     }
     else if (window.innerWidth >= 755 && window.innerWidth < 1400 && horizontalScreenType == "more, than 1399")
     {
-        constVerticalIndent /= 2;
         horizontalIndent /= 2;
         horizontalStartIndentForNoob /= 2;
         verticalIndent /= 2;
@@ -352,7 +350,6 @@ const Update = setInterval(() =>
     }
     else if (window.innerWidth >= 755 && window.innerWidth < 1400 && horizontalScreenType == "less, than 755")
     {
-        constVerticalIndent *= 2;
         horizontalIndent *= 2;
         horizontalStartIndentForNoob *= 2;
         verticalIndent *= 2;
@@ -360,7 +357,6 @@ const Update = setInterval(() =>
     }
     else if (window.innerWidth < 755 && horizontalScreenType == "755 - 1399")
     {
-        constVerticalIndent /= 2;
         horizontalIndent /= 2;
         horizontalStartIndentForNoob /= 2;
         verticalIndent /= 2;
@@ -368,7 +364,6 @@ const Update = setInterval(() =>
     }
     else if (window.innerWidth >= 1400 && horizontalScreenType == "less, than 755")
     {
-        constVerticalIndent *= 4;
         horizontalIndent *= 4;
         horizontalStartIndentForNoob *= 4;
         verticalIndent *= 4;
@@ -376,7 +371,6 @@ const Update = setInterval(() =>
     }
     else if (window.innerWidth < 755 && horizontalScreenType == "more, than 1399")
     {
-        constVerticalIndent /= 4;
         horizontalIndent /= 4;
         horizontalStartIndentForNoob /= 4;
         verticalIndent /= 4;
@@ -384,3 +378,9 @@ const Update = setInterval(() =>
     }
     UpdateNoobPosition();
 }, 20);
+
+function addResource()
+{
+    resources[arrayOfBlockTypes[noobVerticalLayer][noobHorizontalLayer]]++;
+    arrayOfBlockTypes[noobVerticalLayer][noobHorizontalLayer] = 0;
+}
